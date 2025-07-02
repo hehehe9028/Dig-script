@@ -1,0 +1,86 @@
+local Players = game:GetService("Players")
+local player = Players.LocalPlayer
+
+-- GUI Setup
+local gui = Instance.new("ScreenGui", player:WaitForChild("PlayerGui"))
+gui.Name = "HOKALAZA_KeySystem"
+gui.ResetOnSpawn = false
+
+local frame = Instance.new("Frame", gui)
+frame.Size = UDim2.new(0, 360, 0, 230)
+frame.Position = UDim2.new(0.5, 0, 0.5, 0)
+frame.AnchorPoint = Vector2.new(0.5, 0.5)
+frame.BackgroundColor3 = Color3.fromRGB(20, 20, 25)
+frame.BorderSizePixel = 0
+Instance.new("UICorner", frame).CornerRadius = UDim.new(0, 12)
+
+-- Title
+local title = Instance.new("TextLabel", frame)
+title.Text = "🔐 Enter Key to Unlock Script"
+title.Size = UDim2.new(1, -20, 0, 40)
+title.Position = UDim2.new(0, 10, 0, 14)
+title.BackgroundTransparency = 1
+title.TextColor3 = Color3.fromRGB(0, 255, 200)
+title.Font = Enum.Font.GothamBlack
+title.TextSize = 20
+
+-- Input Box
+local input = Instance.new("TextBox", frame)
+input.PlaceholderText = "Enter key here..."
+input.Size = UDim2.new(1, -40, 0, 36)
+input.Position = UDim2.new(0, 20, 0, 68)
+input.BackgroundColor3 = Color3.fromRGB(40, 45, 60)
+input.TextColor3 = Color3.fromRGB(255, 255, 255)
+input.Font = Enum.Font.Gotham
+input.TextSize = 18
+input.ClearTextOnFocus = false
+Instance.new("UICorner", input).CornerRadius = UDim.new(0, 8)
+
+-- Submit Button
+local submit = Instance.new("TextButton", frame)
+submit.Text = "Unlock"
+submit.Size = UDim2.new(1, -40, 0, 36)
+submit.Position = UDim2.new(0, 20, 0, 122)
+submit.BackgroundColor3 = Color3.fromRGB(0, 255, 200)
+submit.TextColor3 = Color3.fromRGB(18, 22, 28)
+submit.Font = Enum.Font.GothamBold
+submit.TextSize = 20
+Instance.new("UICorner", submit).CornerRadius = UDim.new(0, 8)
+
+-- Discord Copy Button
+local getKey = Instance.new("TextButton", frame)
+getKey.Text = "Get Key (Discord)"
+getKey.Size = UDim2.new(1, -40, 0, 32)
+getKey.Position = UDim2.new(0, 20, 0, 172)
+getKey.BackgroundColor3 = Color3.fromRGB(0, 175, 255)
+getKey.TextColor3 = Color3.fromRGB(0, 0, 0)
+getKey.Font = Enum.Font.GothamBold
+getKey.TextSize = 18
+Instance.new("UICorner", getKey).CornerRadius = UDim.new(0, 8)
+
+-- Discord link copier
+local function CopyDiscord()
+    if setclipboard then
+        setclipboard("https://discord.gg/MFRtEsKm")
+    elseif toclipboard then
+        toclipboard("https://discord.gg/MFRtEsKm")
+    elseif syn and syn.clipboard then
+        syn.clipboard.set("https://discord.gg/MFRtEsKm")
+    end
+    getKey.Text = "Link Copied!"
+    task.wait(1.4)
+    getKey.Text = "Get Key (Discord)"
+end
+getKey.MouseButton1Click:Connect(CopyDiscord)
+
+-- Submit logic
+submit.MouseButton1Click:Connect(function()
+    if input.Text == "crazy" then
+        gui:Destroy()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/cabinet224/roblox-scripts/main/dig.lua"))()
+    else
+        submit.Text = "Invalid Key!"
+        task.wait(1.4)
+        submit.Text = "Unlock"
+    end
+end)
