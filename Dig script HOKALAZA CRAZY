@@ -61,11 +61,11 @@ Instance.new("UICorner", getKey).CornerRadius = UDim.new(0, 8)
 -- Discord link copier
 local function CopyDiscord()
     if setclipboard then
-        setclipboard("https://discord.gg/MFRtEsKm")
+        setclipboard("https://discord.gg/4myWDtW8yj")
     elseif toclipboard then
-        toclipboard("https://discord.gg/MFRtEsKm")
+        toclipboard("https://discord.gg/4myWDtW8yj")
     elseif syn and syn.clipboard then
-        syn.clipboard.set("https://discord.gg/MFRtEsKm")
+        syn.clipboard.set("https://discord.gg/4myWDtW8yj")
     end
     getKey.Text = "Link Copied!"
     task.wait(1.4)
