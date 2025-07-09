@@ -75,7 +75,7 @@ getKey.MouseButton1Click:Connect(CopyDiscord)
 
 -- Submit logic
 submit.MouseButton1Click:Connect(function()
-    if input.Text == "crazy" then
+    if input.Text == "ARA" then
         gui:Destroy()
         loadstring(game:HttpGet("https://raw.githubusercontent.com/cabinet224/roblox-scripts/main/dig.lua"))()
     else
